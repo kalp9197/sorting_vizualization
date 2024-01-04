@@ -12,12 +12,9 @@ const highlightScope = {
 const series = [
   {
     label: 'series 1',
-    data: [
-      2423, 2210, 764, 1879, 1478, 1373, 1891, 2171, 620, 1269, 724, 1707, 1188,
-      1879, 626, 1635, 2177, 516, 1793, 1598,
-    ],
+    data: Array.from({ length: 20 }, () => Math.floor(Math.random() * 1000)),
   },
-].map((s) => ({ ...s, highlightScope }));
+].sort((a, b) => a.data - b.data).map((s) => ({ ...s, highlightScope }));
 
 export default function BarAnimation() {
   const [itemNb, setItemNb] = React.useState(5);
@@ -27,12 +24,12 @@ export default function BarAnimation() {
       return;
     }
     setItemNb(newValue);
-  };
+  }
 
   return (
     <Box sx={{ width: '100%' }}>
       <BarChart
-        height={300}
+        height={700}
         series={series.map((s) => ({ ...s, data: s.data.slice(0, itemNb) }))}
       />
       <Typography id="input-item-number" gutterBottom>
@@ -42,7 +39,7 @@ export default function BarAnimation() {
         value={itemNb}
         onChange={handleItemNbChange}
         valueLabelDisplay="auto"
-        min={1}
+        min={5}
         max={20}
         aria-labelledby="input-item-number"
       />
