@@ -21,12 +21,13 @@ const Visualiser = ({ data }) => {
             textAlign="center"
             flexDirection="column"
           >
+
             <p>{d}</p>
             <Box
               roundedTop={"sm"}
               border={"1px"}
               borderColor={"purple.200"}
-              bg={"purple.300"}
+              bg={"red.300"}
               style={{ height: `${d}px` }}
             ></Box>
           </Box>

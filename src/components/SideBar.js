@@ -44,9 +44,8 @@ import {
             id="algorithm"
             variant={"outline"}
           >
-            <option value="simple">Simple</option>
-            <option value="select">Selection</option>
-            <option value="insert">Insertion</option>
+            <option value="simple">Bubble Sort</option>
+            
           </Select>
         </FormControl>
         <Flex gap={"3"} mt={"5"} direction="row">
@@ -57,7 +56,8 @@ import {
               generateArr(formState);
             }}
             loadingText="Generating"
-            colorScheme="purple"
+            colorScheme="red"
+            
           >
             Generate Array
           </Button>
@@ -67,7 +67,7 @@ import {
             isLoading={sorting}
             loadingText="Sorting"
             onClick={sort}
-            colorScheme="purple"
+            colorScheme="red"
             variant="outline"
           >
             Sort

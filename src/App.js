@@ -4,11 +4,13 @@ import Visualiser from "./components/Visualiser";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function App() {
   const [arr, setArr] = useState([]);
   const [generating, setGenerating] = useState(false);
   const [sorting, setSorting] = useState(false);
+
   const generateArr = (formState) => {
     setGenerating(true);
     setTimeout(() => {
@@ -25,49 +27,49 @@ function App() {
   };
 
   useState(() => {
-    generateArr({ size: 10 });
+    generateArr({ size: 9 });
   }, []);
   console.log(arr);
 
-  const sort = () => {
-    setSorting(true);
-    setTimeout(() => {
-      let newArr = [...arr];
-      for (let i = 0; i < arr.length - 1; i++) {
-        setTimeout(() => {
-          for (let j = i + 1; j < arr.length; j++) {
-            if (newArr[i] > newArr[j]) {
-              let temp = newArr[i];
-              newArr[i] = newArr[j];
-              newArr[j] = temp;
-              let newStep = [...newArr];
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-              setTimeout(() => {
-                setArr([...newStep]);
-              }, j * 100);
-            }
-            if (i === arr.length - 2) {
-              setSorting(false);
-            }
-          }
-        }, i * 1000);
+  const sort = async () => {
+    setSorting(true);
+
+    let newArr = [...arr];
+    const n = newArr.length;
+
+    for (let i = 0; i < n - 1; i++) {
+      for (let j = 0; j < n - i - 1; j++) {
+        if (newArr[j] > newArr[j + 1]) {
+          // swap newArr[j] and newArr[j+1]
+          let temp = newArr[j];
+          newArr[j] = newArr[j + 1];
+          newArr[j + 1] = temp;
+
+          setArr([...newArr]); // Update the state to trigger a re-render
+          await sleep(500); // Introduce a delay for visualization
+        }
       }
-    }, 500);
+    }
+
+    setSorting(false);
   };
+
   return (
-      <>
-      <Header/>
-    <Box p={"4"}>
-      <Flex gap={"4"}>
-        <Sidebar
-          generateArr={generateArr}
-          generating={generating}
-          sorting={sorting}
-          sort={sort}
-        />
-        <Visualiser data={arr} />
-      </Flex>
-    </Box>
+    <>
+      <Header />
+      <Box p={"4"}>
+        <Flex gap={"4"}>
+          <Sidebar
+            generateArr={generateArr}
+            generating={generating}
+            sorting={sorting}
+            sort={sort}
+          />
+          <Visualiser data={arr} />
+        </Flex>
+      </Box>
     </>
   );
 }
