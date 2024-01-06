@@ -2,6 +2,8 @@ import { Box, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import Visualiser from "./components/Visualiser";
 import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [arr, setArr] = useState([]);
@@ -53,6 +55,8 @@ function App() {
     }, 500);
   };
   return (
+      <>
+      <Header/>
     <Box p={"4"}>
       <Flex gap={"4"}>
         <Sidebar
@@ -64,6 +68,7 @@ function App() {
         <Visualiser data={arr} />
       </Flex>
     </Box>
+    </>
   );
 }
 
