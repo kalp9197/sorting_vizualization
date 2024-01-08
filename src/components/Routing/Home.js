@@ -1,8 +1,8 @@
-import { Box, Flex } from "@chakra-ui/react";
-import { useState } from "react";
-import Visualiser from "../Visualiser";
+import { Box, Flex } from "@chakra-ui/react"
+import { useState } from "react"
+import Visualiser from "../Visualiser"
 import Sidebar from "../Sidebar"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function Home() {
   const [arr, setArr] = useState([]);
@@ -10,9 +10,9 @@ function Home() {
   const [sorting, setSorting] = useState(false);
 
   const generateArr = (formState) => {
-    setGenerating(true);
+    setGenerating(true)
     setTimeout(() => {
-      let newArr = [];
+      let newArr = []
       while (newArr.length <= formState.size) {
         let random = Math.floor(Math.random() * (200 - 10) + 10);
         if (newArr.indexOf(random) === -1) {
@@ -26,13 +26,13 @@ function Home() {
 
   useState(() => {
     generateArr({ size: 9 });
-  }, []);
-  console.log(arr);
+  }, [])
+  console.log(arr)
 
-  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
   const sort = async () => {
-    setSorting(true);
+    setSorting(true)
 
     let newArr = [...arr];
     const n = newArr.length;
@@ -52,7 +52,7 @@ function Home() {
     }
 
     setSorting(false);
-  };
+  }
 
   return (
     <>
@@ -68,7 +68,7 @@ function Home() {
         </Flex>
       </Box>
     </>
-  );
+  )
 }
 
 export default Home;

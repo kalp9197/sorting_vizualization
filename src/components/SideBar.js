@@ -9,18 +9,17 @@ import {
     SliderFilledTrack,
     SliderThumb,
     SliderTrack,
-  } from "@chakra-ui/react";
-  import React, { useState } from "react";
+  } from "@chakra-ui/react"
+  import React, { useState } from "react"
   
   const Sidebar = ({ generateArr, sort, generating, sorting }) => {
     const [formState, setFormState] = useState({
       size: 10,
       algorithm: "linear",
-    });
-    console.log(formState, generating, sorting);
+    })
+    console.log(formState, generating, sorting)
     return (
       <Box minW="xs" bg="gray.100" p={"4"} borderRadius="lg" overflow="hidden">
-        {/* <form> */}
         <FormControl>
           <FormLabel htmlFor="size">{`Array Size (${formState.size})`}</FormLabel>
           <Slider
@@ -53,7 +52,7 @@ import {
             disabled={sorting}
             isLoading={generating}
             onClick={() => {
-              generateArr(formState);
+              generateArr(formState)
             }}
             loadingText="Generating"
             colorScheme="red"

@@ -1,5 +1,5 @@
-import { Box } from "@chakra-ui/react";
-import React from "react";
+import { Box } from "@chakra-ui/react"
+import React from "react"
 
 const Visualiser = ({ data }) => {
   return (
@@ -31,10 +31,10 @@ const Visualiser = ({ data }) => {
               style={{ height: `${d}px` }}
             ></Box>
           </Box>
-        );
+        )
       })}
     </Box>
-  );
-};
+  )
+}
 
 export default Visualiser;

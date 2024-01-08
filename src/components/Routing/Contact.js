@@ -1,16 +1,16 @@
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import Swal from 'sweetalert2';
+import React, { useRef } from 'react'
+import emailjs from '@emailjs/browser'
+import Swal from 'sweetalert2'
 
 const Contact = () => {
-  const form = useRef();
+  const form = useRef()
 
   const sendEmail = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     // Send feedback over mail logic
     emailjs.sendForm('service_qdszzei', 'template_7cxjbij', form.current, '4PGCka87R1EClPpRx')
       .then((result) => {
-          console.log(result.text);
+          console.log(result.text)
 
           // Show success message 
           Swal.fire({
@@ -19,7 +19,7 @@ const Contact = () => {
             title: 'Your work has been saved',
             showConfirmButton: false,
             timer: 1500
-          });
+          })
       })
       .catch((error) => {
           console.log(error.text);
@@ -36,11 +36,13 @@ const Contact = () => {
 
   return (
     // feedback form
+    <>
     <div className="container mt-5 mb-5 pb-5 text-dark">
-      <h2>Feedback Form</h2>
+      <div className='border border-3 border-secondary rounded p-5'>
+      <h2 className='fs-1 text-center mb-3' >Feedback Form</h2>
       <form ref={form} onSubmit={sendEmail}>
-        <div className="form-group">
-          <label htmlFor="name">Name:</label>
+        <div className="form-group mb-4">
+          <label htmlFor="name"><h5> Name:</h5></label>
            <input
             type="text"
             className="form-control"
@@ -49,8 +51,8 @@ const Contact = () => {
             required
           />
         </div>
-        <div className="form-group mt-2">
-          <label htmlFor="email">Email:</label>
+        <div className="form-group mb-4">
+          <label htmlFor="email"><h5> Email:</h5></label>
           <input
             type="email"
             className="form-control"
@@ -59,8 +61,8 @@ const Contact = () => {
             required
           />
         </div>
-        <div className="form-group mt-2">
-          <label htmlFor="query">Query:</label>
+        <div className="form-group mb-4">
+          <label htmlFor="query"><h5> Query:</h5></label>
           <textarea
             className="form-control"
             name="message"
@@ -74,7 +76,9 @@ const Contact = () => {
           Submit
         </button>
       </form>
+      </div>
     </div>
+    </>
   );
 };
 
